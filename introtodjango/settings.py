@@ -12,6 +12,12 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=7w%y02w!e&=(#92305t3l!tlrplv_tb5kcxp$udl7e1ugye1u'
+SECRET_KEY = env("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -42,6 +48,8 @@ INSTALLED_APPS = [
     'blog',
     'ecommerce',
     'crispy_forms',
+    'account',
+    'jazzmin'
 ]
 CRISPY_TEMPLATE_PACK = "bootstrap4"
 
@@ -135,3 +143,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_URL = "/media/"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+env = environ.Env()
+environ.Env.read_env()
+
+LOGIN_REDIRECT_URL = "blog:profile"
+LOGIN_REDIRECT_URL = "blog:post_list" 

@@ -1,0 +1,11 @@
+<!-- HOW TO CREATE, UPDATE OPERATION IN DJANGO -->
+{% if form.errors %}
+<p>There was an error</p>
+{% endif %}
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p}}
+
+    <input type="submit" value="update profile">
+</form>

@@ -5,6 +5,12 @@ from django.views.generic import TemplateView
 from.models import Book, Post, Comment
 from django.core.paginator import Paginator,EmptyPage, PageNotAnInteger
 from .forms import CommentForm
+from django.shortcuts import render, redirect
+from django.contrib.auth import authenticate, login, logout
+from django.contrib import messages
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.decorators import login_required
+
 
 # Create your views here.
 
@@ -14,7 +20,7 @@ def displayTime(request):
     return HttpResponse(html)
 
 def displayContact(request):
-    return HttpResponse("Welcome to my contact page")
+    return render(request, "contact.html", {})
 
 class MyViews(TemplateView):
     template_name = "index.html"
@@ -51,3 +57,31 @@ def post_detail(request, year, month, day, post):
         comment_form = CommentForm() 
     return render(request, 'post_detail.html',{'post':post,'comments':comments, 'new_comment': new_comment ,'comment_form':comment_form})
 
+def loginView(request):
+    if request.method== 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.info(request, f'You have succesfuly logged in as {username}')
+                return redirect ('blog:profile')
+            else:
+                messages.error(request, f'Invalid username or password.')
+        else:
+            messages.error(request, f'Invalid username or password.')
+    form = AuthenticationForm()
+    return render (request, 'authenticate/login.html',{'form':form})
+
+@login_required(login_url='blog:login')
+def profileView(request):
+    return render(request, 'profile.html', {})
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')
+
+def contactview(request):
+    return render(request, "about.html", {})

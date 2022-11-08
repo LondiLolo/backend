@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+<div class="about-section">
+    <h1>About Us Page</h1>
+    <p>Welcome!</p>
+    <p>You have come to the right place,here you will see list of our  team, people that  have built this business from the ground up and are still working hard even today to continue making it  a success.</p>
+  </div>
+  
+  <h2 style="text-align:center">Our Team</h2>
+  <div class="row">
+    <div class="column">
+      <div class="card">
+        <img src="{% static 'images/1_LPPpUZLved9uY_9gvRgRlw.jpeg'  %}" alt="Londi" style="width:25%">
+        <div class="container">
+          <h2>Londi Mahlangu</h2>
+          <p class="title">CEO & Founder</p>
+          <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+          <p>londimahlangu29@gmail.com</p>
+          <p><button class="button">Contact</button></p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="column">
+      <div class="card">
+        <img src="{% static 'images/download.jpg' %}" alt="Nkanyezi" style="width:25%">
+        <div class="container">
+          <h2>Nkanyezi Mahlangu</h2>
+          <p class="title">Art Director</p>
+          <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+          <p>nkanyezi2@yahoo.com</p>
+          <p><button class="button">Contact</button></p>
+        </div>
+      </div>
+    </div>
+  
+    <div class="column">
+      <div class="card">
+        <img src="{% static 'images/7c4438f45f4356f02d938a9b5ad14e67.jpg' %}" alt="Wendy" style="width:25%">
+        <div class="container">
+          <h2>Wendy Mahlangu</h2>
+          <p class="title">Designer</p>
+          <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+          <p>wendy@hotmail.com</p>
+          <p><button class="button">Contact</button></p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
